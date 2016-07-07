@@ -13,10 +13,12 @@ require_once dirname(__FILE__) . '/autoload.php';
 use pimax\FbBotApp;
 use pimax\Messages\Message;
 use pimax\Messages\ImageMessage;
+use pimax\Messages\VideoMessage;
 use pimax\UserProfile;
 use pimax\Messages\MessageButton;
 use pimax\Messages\StructuredMessage;
 use pimax\Messages\MessageElement;
+use pimax\Messages\MessageQuickReply;
 use pimax\Messages\MessageReceiptElement;
 use pimax\Messages\Address;
 use pimax\Messages\Summary;
@@ -319,9 +321,9 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                             $bot->send(new Message($message['sender']['id'],
                                 'How likely would you join us?',
                                 [
-                                    new MessageQuickReplay('Likely', 'Likely'),
-                                    new MessageQuickReplay('Maybe', 'Maybe'),
-                                    new MessageQuickReplay('Unlikely', 'Unlikely')
+                                    new MessageQuickReply('Likely', 'Likely'),
+                                    new MessageQuickReply('Maybe', 'Maybe'),
+                                    new MessageQuickReply('Unlikely', 'Unlikely')
                                 ]
                             ));
                             sleep(3);
