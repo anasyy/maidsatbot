@@ -8,6 +8,7 @@ if ($_REQUEST['hub_verify_token'] === $verify_token) {
   exit;
 }
 
+
 require_once dirname(__FILE__) . '/autoload.php';
 
 use pimax\FbBotApp;
@@ -181,7 +182,10 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
             if (!empty($message['delivery'])) {
                 exit;
             }
+          
             
+          
+          
             $user = $bot->userProfile($message['sender']['id']);
 
             $id = $message['sender']['id'];
@@ -313,7 +317,7 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                             sleep(20);
                     */
                             $bot->send(new Message($message['sender']['id'],'Ok, great. Watch this video to learn more, and then ask us any questions.')) ; 
-                            sleep(1);
+                            sleep(3);
                             $bot->send(new VideoMessage($message['sender']['id'],'http://www.html5videoplayer.net/videos/toystory.mp4'));
                             sleep(10);
                             $bot->send(new Message($message['sender']['id'], "Thank you for watching the video ".$fname.", we're done, Just a couple of questions :)"));
@@ -450,18 +454,5 @@ You can turn them on again by typing 'Notifications On'"));
     }
 }
 
-
-function LogRequest ($output) 
-{
-	$filename = 'log.txt' ; 
-	$date     = date ('YYYY-mm-DD HH::MM:SS') ;
-	$server   = var_export ( $_SERVER  , true ) ; 
-	$request  = var_export ( $_REQUEST , true ) ; 
-	$input    = file_get_contents ( 'php://input' ) ; 
-	$log 	  = "Start: $date\n Server : \n Input: \n $input \n Output : \n \{ $output \} \n End \n" ;
-	
-	file_put_contents ( $filename , $log , FILE_APPEND ) ;
-	
-}
 
 ?>

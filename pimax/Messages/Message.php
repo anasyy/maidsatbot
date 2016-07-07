@@ -56,13 +56,14 @@ class Message
         
         if (! is_null ( $this->quick_replies ))
         {
-            
-            $result['quick_replies']=[] ; 
+            $temp = [] ; 
+            $result['message']['quick_replies']=[] ; 
             
             foreach ( $this->quick_replies as $reply )
             {
-                $result['quick_replies'][]=$reply->getData() ;
+                $temp[]=$reply->getData() ;
             }
+            $result['message']['quick_replies']=$temp;
         }
         
         return $result ;

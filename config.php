@@ -1,9 +1,11 @@
 <?php
 
-    
-$verify_token = 'Token123Test';
-$token = "EAABgZCEcIOZCkBAP0j1VPnjPZAi6EsBrfv4d34dqXWDuKZAPTOaJXccht4ehBfHdVDwC7TWcmiecSWCwd4XfJOu5iwfhhbfrzQw76je1vYL5ceL2IvAvisutz8uOXQoiEsgZC7x4pXnmAdQgBMlyaAjyuacLrb4xW8vpSZAQlZCLQZDZD";
+error_reporting(9999999);
+ini_set('display_errors', 1);
 
+$verify_token = 'Token123Test';
+//$token = "EAABgZCEcIOZCkBAP0j1VPnjPZAi6EsBrfv4d34dqXWDuKZAPTOaJXccht4ehBfHdVDwC7TWcmiecSWCwd4XfJOu5iwfhhbfrzQw76je1vYL5ceL2IvAvisutz8uOXQoiEsgZC7x4pXnmAdQgBMlyaAjyuacLrb4xW8vpSZAQlZCLQZDZD";
+$token='EAAXGfZBD4kzkBANHKInrujrBjZAPvo4zuqLjZADbeZCujhds731tzwDSgS8PmVoa44foDAhYqkii08AJr57NUqIbZCthzST1BsBxiRz2qrecDR2z5YT8a6Ub4pDmeHRZB0oM9trO4qOhyVHlg1SlWxZAV0qEseeDxhIe5CvFsV7GgZDZD';
 
 $servername = "127.0.0.1";
 
