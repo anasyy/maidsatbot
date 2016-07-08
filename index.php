@@ -139,16 +139,16 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                 {
                     updateUser($db, $id, 'Initializing', 1);
                     $bot->send(new Message($message['sender']['id'], "Congratulations ".$fname.", If you are currently a housemaid in an Arab country, you are automatically approved to work for Maids.at :)"));
-                    __sleep(6);
+                    sleep(6);
                     $bot->send(new Message($message['sender']['id'], "When your employer tells you your exact travel date to the Philippines,immediately message us here or miss call us on +1-424-2430506 to organize your flight back to Dubai."));
-                    __sleep(9);
+                    sleep(9);
         
                         $bot->send(new Message($message['sender']['id'],'Ok, great. Watch this video to learn more, and then ask us any questions.')) ; 
-                        __sleep(3);
+                        sleep(3);
                         $bot->send(new VideoMessage($message['sender']['id'],'http://www.html5videoplayer.net/videos/toystory.mp4'));
-                        __sleep(10);
+                        sleep(10);
                         $bot->send(new Message($message['sender']['id'], "Thank you for watching the video ".$fname.", we're done, Just a couple of questions :)"));
-                        __sleep(3);
+                        sleep(3);
                         $bot->send(new Message($message['sender']['id'],
                             'How likely would you join us?',
                             [
@@ -157,7 +157,7 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                                 new MessageQuickReply('Unlikely', 'Unlikely')
                             ]
                         ));
-                        __sleep(3);
+                        sleep(3);
                         updateUser($db, $id, 'Initializing', 0);
                     }
                     else end_flush();
@@ -258,7 +258,7 @@ You can turn them on again by typing 'Notifications On'"));
                         {
                             updateUser($db, $id, 'Talking', 1);
                             $bot->send(new Message($message['sender']['id'], "We will route you now to one of our hiring managers ".$fname.", it may take a minute or two, feel free to ask him any question that comes to your mind :) :)"));
-                            __sleep(3);
+                            sleep(3);
                             $bot->send(new Message($message['sender']['id'], "Routing..."));
                         }
                         else if ($talking == 1)
@@ -268,12 +268,12 @@ You can turn them on again by typing 'Notifications On'"));
                                 updateUser($db, $id, 'Initializing', 1);
                                 updateUser($db, $id, 'Talking', 0);
                                 $bot->send(new Message($message['sender']['id'], "When your employer tells you your exact travel date to the Philippines,immediately message us here or miss call us on +1-424-2430506 to organize your flight back to Dubai."));
-                                __sleep(9);
+                                sleep(9);
                             
                                 $bot->send(new Message($message['sender']['id'],'Watch this video to learn more, and then ask us any questions.')) ; 
-                                __sleep(1);
+                                sleep(1);
                                 $bot->send(new VideoMessage($message['sender']['id'],'http://www.html5videoplayer.net/videos/toystory.mp4'));
-                                __sleep(10);
+                                sleep(10);
                                 updateUser($db, $id, 'Initializing', 0);
                             }
                         }
