@@ -12,6 +12,7 @@ if (isset($_REQUEST['hub_verify_token'])&&$_REQUEST['hub_verify_token'] === $ver
 
 
 require_once dirname(__FILE__) . '/autoload.php';
+require_once dirname(__FILE__) . '/db.php';
 
 use pimax\FbBotApp;
 use pimax\Messages\Message;
@@ -42,122 +43,6 @@ use pimax\Messages\Adjustment;
     //echo "Connected successfully (".$db->host_info.")";
 //------------------------------------------------------------------------------------------------------------------------------    
 
-//Checking if the user is already in our database-------------------------------------------------------------------------------
-    function checkUser($dbInstance, $id)
-    {
-        $sql = "SELECT `ID`, `UserId`, `UserName`, `ProfilePic`, `Gender`, `Country`, `Candidate`, `Requirement`, `Satisfaction`, `Subscribed`, `Interactions`, `Talking`, `Initializing`, `FirstReached`, `LastReached` FROM `Test_Users_List` WHERE `UserId`=";
-        $sql .= "'".$id."'";
-        
-        $result = $dbInstance->query($sql);
-        
-        if ($result->num_rows > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-//------------------------------------------------------------------------------------------------------------------------------
-
-//Get a certain field in a user's data-------------------------------------------------------------------------------
-    function getUserData($dbInstance, $id, $field)
-    {
-        $sql = "SELECT `";
-        $sql .= $field;
-        $sql .= "` FROM `Test_Users_List` WHERE `UserId`=";
-        $sql .= "'".$id."'";
-        
-        $result = mysqli_query($dbInstance, $sql);
-        $row = mysqli_fetch_array($result);
-        $value = $row[$field];
-        
-        return $value;
-    }
-//------------------------------------------------------------------------------------------------------------------------------
-
-//update a certain user info in the database---------------------------------------------------------------------------------------------    
-    function updateUser($dbInstance, $id, $field, $value)
-    {
-        $sql = "UPDATE `Test_Users_List` SET `";
-        $sql .= $field."` = ";
-        $sql .= "'".$value."'";
-        $sql .= " Where userId = '";
-        $sql .= $id."'";
-        
-        if (mysqli_query($dbInstance, $sql))
-        {
-         //  echo "record updated successfully";
-        }
-        else
-        {
-           echo "Error: " . $sql . "<br>" . mysqli_error($dbInstance);
-        }
-    }
-//------------------------------------------------------------------------------------------------------------------------------
-
-//Insert a new user in the database---------------------------------------------------------------------------------------------    
-    function insertUser($dbInstance, $id, $fname, $lname, $pic, $gender, $country, $candidate, $requirement, $satisfaction, $subscribed, $interactions, $talking, $initializing, $firstReached, $lastReached)
-    {
-        $sql = "INSERT INTO Test_Users_List (UserId, UserName, ProfilePic, Gender, Country, Candidate, Requirement, Satisfaction, Subscribed, interactions, Talking, Initializing, FirstReached, LastReached) VALUES ('";
-        $sql .= $id;
-        $sql .= "', '";
-        $sql .= $fname." ".$lname;
-        $sql .= "', '";
-        $sql .= $pic;
-        $sql .= "', ";
-        $sql .= "'".$gender."'";
-        $sql .= ", ";
-        $sql .= "'".$country."'";
-        $sql .= ", ";
-        $sql .= "'".$candidate."'";
-        $sql .= ", ";
-        $sql .= "'".$requirement."'";
-        $sql .= ", ";
-        $sql .= "'".$satisfaction."'";
-        $sql .= ", ";
-        $sql .= $subscribed;
-        $sql .= ", ";
-        $sql .= $interactions;
-        $sql .= ", ";
-        $sql .= $talking;
-        $sql .= ", ";
-        $sql .= $initializing;
-        $sql .= ", ";
-        $sql .= "'".$firstReached."'";
-        $sql .= ", ";
-        $sql .= "'".$lastReached."'";
-        $sql .= ")";
-        
-        if (mysqli_query($dbInstance, $sql))
-        {
-         //  echo "New record created successfully";
-        }
-        else
-        {
-           echo "Error: " . $sql . "<br>" . mysqli_error($dbInstance);
-        }
-    }
-//------------------------------------------------------------------------------------------------------------------------------
-
-//Get the time difference between now and lastReached---------------------------------------------------------------------------
-
-function getTimeDiff($dbInstance, $id)
-    {
-        $now = date("Y-m-d G:i:s", strtotime('+4 hours'));
-        
-        $sql = "Select time_to_sec(timediff(";
-        $sql .= "'".$now."',";
-        $sql .= "LastReached)) AS Time_Diff From `Test_Users_List` Where userId = ";
-        $sql .= "'".$id."'";
-        
-        $result = mysqli_query($dbInstance, $sql);
-        $row = mysqli_fetch_array($result);
-        $value = $row['Time_Diff'];
-        
-        return $value;
-    }
 
 //------------------------------------------------------------------------------------------------------------------------------
 
@@ -186,14 +71,6 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
             if (!empty($message['delivery'])) {
                 end_flush();
             }
-            
-            if ( isset($message['delivery']))
-            {
-                end_flush();
-            }
-          
-            
-          
           
             $user = $bot->userProfile($message['sender']['id']);
 
@@ -212,9 +89,7 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
             $initializing =0;
             
             $timePassed = getTimeDiff($db, $id);
-            
-
-            $command = "";
+        
 
             // When bot receive message from user
             if (!empty($message['message']))
@@ -253,7 +128,8 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
 //---------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------------
 
-            switch (strtolower($command)) {
+            switch (strtolower($command)) 
+            {
 
                 case "firsttimevisitor":
                 case "start":
@@ -303,14 +179,16 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                 case 'likely':
                     
                   //  updateUser($db, $id, '????', $command);
+                   updateUser($db, $id, 'Candidate', $command);
                     $bot->send(new Message($message['sender']['id'],
-                      'What made you interested in joining us? :)',
+                      'Ok, what can we do to convince you?',
                       [
                           new MessageQuickReply('Good salary','Good salary'),
-                          new MessageQuickReply('Plenty of Benefits','Plenty of Benefits'),
-                          new MessageQuickReply('Protection from Bad Clients','Protection from Bad Clients') 
+                          new MessageQuickReply('Plenty of Benefits','Transport guarantee'),
+                          new MessageQuickReply('Protection','Protection') 
                       ]
                     ));
+                  
                     break;
                 
                 case 'raise your salary':

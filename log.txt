@@ -1,17 +1,20 @@
 {"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
 
 
 
 
 
-{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"version"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"start"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"start"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"start"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"start"}}]}]}
+
+
+
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"Likely"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"Unlikely"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"Unlikely"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"likely"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"likely"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"likely"}}]}]}
+{"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"likely"}}]}]}
