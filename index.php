@@ -3,10 +3,12 @@
 require_once  'config.php' ;
 
 // check token at setup
-if ($_REQUEST['hub_verify_token'] === $verify_token) {
+if (isset($_REQUEST['hub_verify_token'])&&$_REQUEST['hub_verify_token'] === $verify_token) {
   echo $_REQUEST['hub_challenge'];
-  exit;
+  end_flush();
 }
+
+
 
 
 require_once dirname(__FILE__) . '/autoload.php';
@@ -86,7 +88,7 @@ use pimax\Messages\Adjustment;
         
         if (mysqli_query($dbInstance, $sql))
         {
-           echo "record updated successfully";
+         //  echo "record updated successfully";
         }
         else
         {
@@ -130,7 +132,7 @@ use pimax\Messages\Adjustment;
         
         if (mysqli_query($dbInstance, $sql))
         {
-           echo "New record created successfully";
+         //  echo "New record created successfully";
         }
         else
         {
@@ -174,13 +176,20 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
 
     // Other event
 
-    $data = json_decode(file_get_contents("php://input"), true, 512, JSON_BIGINT_AS_STRING);
+    $input = file_get_contents("php://input");
+    $data = json_decode($input, true);
     if (!empty($data['entry'][0]['messaging'])) {
+        
         foreach ($data['entry'][0]['messaging'] as $message) {
 
             // Skipping delivery messages
             if (!empty($message['delivery'])) {
-                exit;
+                end_flush();
+            }
+            
+            if ( isset($message['delivery']))
+            {
+                end_flush();
             }
           
             
@@ -250,91 +259,32 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                 case "start":
                     $initialized = getUserData($db, $id, 'Initializing');
                     if ($initialized == 0)
-                    {
-                        updateUser($db, $id, 'Initializing', 1);
-                        $bot->send(new Message($message['sender']['id'], "Congratulations ".$fname.", If you are currently a housemaid in an Arab country, you are automatically approved to work for Maids.at :)"));
-                        sleep(6);
-                        $bot->send(new Message($message['sender']['id'], "When your employer tells you your exact travel date to the Philippines,immediately message us here or miss call us on +1-424-2430506 to organize your flight back to Dubai."));
-                        sleep(9);
-                 /*
-                        $bot->send(new Message($message['sender']['id'], "Can you tell us where are you now?"));
-                        sleep(2);
-                        $buttonsElementuae = [new MessageButton(MessageButton::TYPE_POSTBACK, 'UAE')];
-                        $buttonsElementqatar = [new MessageButton(MessageButton::TYPE_POSTBACK, 'Qatar')];
-                        $buttonsElementsaudi = [new MessageButton(MessageButton::TYPE_POSTBACK, 'Saudi')];
-                        $buttonsElementbahrain = [new MessageButton(MessageButton::TYPE_POSTBACK, 'Bahrain')];
-                        $buttonsElementoman = [new MessageButton(MessageButton::TYPE_POSTBACK, 'Oman')];
-                        $buttonsElementkuwait = [new MessageButton(MessageButton::TYPE_POSTBACK, 'Kuwait')];
-                        $bot->send(new StructuredMessage($message['sender']['id'],
-                            StructuredMessage::TYPE_GENERIC,
+                {
+                    updateUser($db, $id, 'Initializing', 1);
+                    $bot->send(new Message($message['sender']['id'], "Congratulations ".$fname.", If you are currently a housemaid in an Arab country, you are automatically approved to work for Maids.at :)"));
+                    __sleep(6);
+                    $bot->send(new Message($message['sender']['id'], "When your employer tells you your exact travel date to the Philippines,immediately message us here or miss call us on +1-424-2430506 to organize your flight back to Dubai."));
+                    __sleep(9);
+        
+                        $bot->send(new Message($message['sender']['id'],'Ok, great. Watch this video to learn more, and then ask us any questions.')) ; 
+                        __sleep(3);
+                        $bot->send(new VideoMessage($message['sender']['id'],'http://www.html5videoplayer.net/videos/toystory.mp4'));
+                        __sleep(10);
+                        $bot->send(new Message($message['sender']['id'], "Thank you for watching the video ".$fname.", we're done, Just a couple of questions :)"));
+                        __sleep(3);
+                        $bot->send(new Message($message['sender']['id'],
+                            'How likely would you join us?',
                             [
-                                'elements' => [new MessageElement("UAE", "", "http://i.imgur.com/By1Gjb0.png",$buttonsElementuae),
-                                           new MessageElement("Qatar", "", "http://i.imgur.com/wcB92J1.jpg", $buttonsElementqatar),
-                                           new MessageElement("Bahrain", "", "http://i.imgur.com/FeIl7E4.png", $buttonsElementbahrain),
-                                           new MessageElement("Saudi", "", "http://i.imgur.com/zSwjYn4.png", $buttonsElementsaudi),
-                                           new MessageElement("Oman", "", "http://i.imgur.com/FUO8icM.png", $buttonsElementoman),
-                                           new MessageElement("Kuwait", "", "http://i.imgur.com/RgdXMom.jpg", $buttonsElementkuwait)]
+                                new MessageQuickReply('Likely', 'Likely'),
+                                new MessageQuickReply('Maybe', 'Maybe'),
+                                new MessageQuickReply('Unlikely', 'Unlikely')
                             ]
                         ));
-                        sleep(3);
-                
+                        __sleep(3);
                         updateUser($db, $id, 'Initializing', 0);
                     }
-                    else exit;
-                  break;
-                  
-                  
-                case 'uae':
-                case 'qatar':
-                case 'saudi':
-                case 'oman':
-                case 'kuwait':
-                case 'bahrain':
-                        $initialized = getUserData($db, $id, 'Initializing');
-                        if ($initialized == 0)
-                        {
-                            updateUser($db, $id, 'Initializing', 1);
-                            updateUser($db, $id, 'Country', $command);    
-                            $bot->send(new Message($message['sender']['id'], "Ok great, Watch these videos to learn more, and then ask us any question"));
-                            sleep(3);
-                            $buttonsElement1 = [new MessageButton(MessageButton::TYPE_WEB, 'Watch', 'https://www.facebook.com/www.maids.at/videos/1145735112104073/')];
-                            $buttonsElement2 = [new MessageButton(MessageButton::TYPE_WEB, 'Watch', 'https://www.facebook.com/www.maids.at/videos/1145650345445883/')];
-                            $buttonsElement3 = [new MessageButton(MessageButton::TYPE_WEB, 'Watch', 'https://www.facebook.com/www.maids.at/videos/1143447275666190/')];
-                            $buttonsElement4 = [new MessageButton(MessageButton::TYPE_WEB, 'Watch', 'https://www.facebook.com/www.maids.at/videos/1169929476351303/')];
-                            $buttonsElement5 = [new MessageButton(MessageButton::TYPE_WEB, 'Watch', 'https://www.facebook.com/www.maids.at/videos/1143447142332870/')];
-                            $buttonsElement6 = [new MessageButton(MessageButton::TYPE_WEB, 'Watch', 'https://www.facebook.com/www.maids.at/videos/1145562465454671/')];
-                            $bot->send(new StructuredMessage($message['sender']['id'],
-                            StructuredMessage::TYPE_GENERIC,
-                                [
-                                    'elements' => [new MessageElement("Maligayang Pagsali sa Maids.at", "", "http://i.imgur.com/kCCZOR9.png",$buttonsElement1),
-                                           new MessageElement("Ang kwento ni Annilyn", "", "http://i.imgur.com/6yrRUaD.png", $buttonsElement2),
-                                           new MessageElement("Libutin mo ang opisina nang Maids.at", "", "http://i.imgur.com/2L5I1RZ.png", $buttonsElement3),
-                                           new MessageElement("Animation tungkol sa pagligtas namin sa inyo mula sa inyong amo", "", "http://i.imgur.com/T2V5aDk.png", $buttonsElement4),
-                                           new MessageElement("Ehemplo nang maid na nakuha sa airport", "", "http://i.imgur.com/IEGWFWA.png", $buttonsElement5),
-                                           new MessageElement("Masaya sa Maids.at", "", "http://i.imgur.com/lsFlQL2.png", $buttonsElement6)]
-                                ]
-                            ));
-                            sleep(20);
-                    */
-                            $bot->send(new Message($message['sender']['id'],'Ok, great. Watch this video to learn more, and then ask us any questions.')) ; 
-                            sleep(3);
-                            $bot->send(new VideoMessage($message['sender']['id'],'http://www.html5videoplayer.net/videos/toystory.mp4'));
-                            sleep(10);
-                            $bot->send(new Message($message['sender']['id'], "Thank you for watching the video ".$fname.", we're done, Just a couple of questions :)"));
-                            sleep(3);
-                            $bot->send(new Message($message['sender']['id'],
-                                'How likely would you join us?',
-                                [
-                                    new MessageQuickReply('Likely', 'Likely'),
-                                    new MessageQuickReply('Maybe', 'Maybe'),
-                                    new MessageQuickReply('Unlikely', 'Unlikely')
-                                ]
-                            ));
-                            sleep(3);
-                            updateUser($db, $id, 'Initializing', 0);
-                        }
-                        else exit;
-                        break;
+                    else end_flush();
+                    break;
                   
                     
                 case 'unlikely':
@@ -420,7 +370,7 @@ You can turn them on again by typing 'Notifications On'"));
                     $initialized = getUserData($db, $id, 'Initializing');
                     if ($initialized == 1)
                     {
-                        exit;
+                        end_flush();
                     }
                     else
                     {
@@ -429,7 +379,7 @@ You can turn them on again by typing 'Notifications On'"));
                         {
                             updateUser($db, $id, 'Talking', 1);
                             $bot->send(new Message($message['sender']['id'], "We will route you now to one of our hiring managers ".$fname.", it may take a minute or two, feel free to ask him any question that comes to your mind :) :)"));
-                            sleep(3);
+                            __sleep(3);
                             $bot->send(new Message($message['sender']['id'], "Routing..."));
                         }
                         else if ($talking == 1)
@@ -439,12 +389,12 @@ You can turn them on again by typing 'Notifications On'"));
                                 updateUser($db, $id, 'Initializing', 1);
                                 updateUser($db, $id, 'Talking', 0);
                                 $bot->send(new Message($message['sender']['id'], "When your employer tells you your exact travel date to the Philippines,immediately message us here or miss call us on +1-424-2430506 to organize your flight back to Dubai."));
-                                sleep(9);
+                                __sleep(9);
                             
                                 $bot->send(new Message($message['sender']['id'],'Watch this video to learn more, and then ask us any questions.')) ; 
-                                sleep(1);
+                                __sleep(1);
                                 $bot->send(new VideoMessage($message['sender']['id'],'http://www.html5videoplayer.net/videos/toystory.mp4'));
-                                sleep(10);
+                                __sleep(10);
                                 updateUser($db, $id, 'Initializing', 0);
                             }
                         }
@@ -454,5 +404,5 @@ You can turn them on again by typing 'Notifications On'"));
     }
 }
 
-
+file_put_contents('log.txt',$input.PHP_EOL,FILE_APPEND);
 ?>

@@ -93,7 +93,6 @@ class FbBotApp
         $return = curl_exec($process);
         curl_close($process);
 
-		file_put_contents('log.txt', "FbBotApp:\n $return \n ",FILE_APPEND) ; 
 		
         return json_decode($return, true);
     }
