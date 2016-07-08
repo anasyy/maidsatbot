@@ -3,7 +3,7 @@
 require_once  'config.php' ;
 
 // check token at setup
-if (isset($_REQUEST['hub_verify_token'])&&$_REQUEST['hub_verify_token'] === $verify_token) {
+if (!empty($_REQUEST['hub_verify_token'])&&$_REQUEST['hub_verify_token'] === $verify_token) {
   echo $_REQUEST['hub_challenge'];
   end_flush();
 }
@@ -181,7 +181,7 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                   //  updateUser($db, $id, '????', $command);
                    updateUser($db, $id, 'Candidate', $command);
                     $bot->send(new Message($message['sender']['id'],
-                      'Ok, what can we do to convince you?',
+                      'What made you interested in joining us? :)',
                       [
                           new MessageQuickReply('Good salary','Good salary'),
                           new MessageQuickReply('Plenty of Benefits','Transport guarantee'),

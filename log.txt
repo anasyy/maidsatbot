@@ -18,3 +18,17 @@
 {"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"likely"}}]}]}
 {"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"likely"}}]}]}
 {"object":"page","entry":[{"id":"1105302146208360","time":1467671816247,"messaging":[{"sender":{"id":"1047107118700838"},"recipient":{"id":""},"timestamp":"","message":{"mid":"mid.1467671816215:2206dd640a80517869","seq":519,"text":"likely"}}]}]}
+
+
+
+
+
+
+
+
+
+{"object":"page","entry":[{"id":"1399079443450795","time":1467951817178,"messaging":[{"sender":{"id":"1209265725760030"},"recipient":{"id":"1399079443450795"},"timestamp":1467951564867,"message":{"mid":"mid.1467951564861:1019623b4bc3b55f85","seq":9,"text":"start"}}]}]}
+{"object":"page","entry":[{"id":"1399079443450795","time":1467951831685,"messaging":[{"sender":{"id":"1209265725760030"},"recipient":{"id":"1399079443450795"},"timestamp":1467951564867,"message":{"mid":"mid.1467951564861:1019623b4bc3b55f85","seq":9,"text":"start"}}]}]}
+{"object":"page","entry":[{"id":"1399079443450795","time":1467951918069,"messaging":[{"sender":{"id":"1209265725760030"},"recipient":{"id":"1399079443450795"},"timestamp":1467951564867,"message":{"mid":"mid.1467951564861:1019623b4bc3b55f85","seq":9,"text":"start"}}]}]}
+{"object":"page","entry":[{"id":"1399079443450795","time":1467951962975,"messaging":[{"sender":{"id":"1209265725760030"},"recipient":{"id":"1399079443450795"},"timestamp":1467951962892,"message":{"quick_reply":{"payload":"Likely"},"mid":"mid.1467951962886:68818cddb696365f80","seq":35,"text":"Likely"}}]}]}
+{"object":"page","entry":[{"id":"1399079443450795","time":1467951971504,"messaging":[{"sender":{"id":"1209265725760030"},"recipient":{"id":"1399079443450795"},"timestamp":1467951971423,"message":{"quick_reply":{"payload":"Protection"},"mid":"mid.1467951971386:2212b1869f38f25c90","seq":38,"text":"Protection"}}]}]}
