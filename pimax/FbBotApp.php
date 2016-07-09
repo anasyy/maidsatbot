@@ -82,7 +82,7 @@ class FbBotApp
         $process = curl_init($this->apiUrl.$url);
         curl_setopt($process, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($process, CURLOPT_HEADER, false);
-        curl_setopt($process, CURLOPT_TIMEOUT, 30);
+        curl_setopt($process, CURLOPT_TIMEOUT, 120);
         
         if($type == self::TYPE_POST) {
             curl_setopt($process, CURLOPT_POST, 1);

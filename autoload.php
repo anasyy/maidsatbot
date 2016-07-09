@@ -14,6 +14,12 @@
 	require_once dirname(__FILE__) . '/' .'pimax/Messages/Address.php';
 	require_once dirname(__FILE__) . '/' .'pimax/Messages/Summary.php';
 	require_once dirname(__FILE__) . '/' .'pimax/Messages/Adjustment.php';
+		  
+    require_once dirname(__FILE__).'/salesforce-php-toolkit/soapclient/SforceHeaderOptions.php' ; 
+    require_once dirname(__FILE__).'/salesforce-php-toolkit/soapclient/ProxySettings.php' ; 
+    require_once dirname(__FILE__).'/salesforce-php-toolkit/soapclient/SforceProcessRequest.php' ; 
+	require_once dirname(__FILE__).'/salesforce-php-toolkit/soapclient/SforcePartnerClient.php' ;
+	 
 
 ?>
 	

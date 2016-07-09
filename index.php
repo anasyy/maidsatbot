@@ -32,9 +32,7 @@ use pimax\Messages\Adjustment;
 
 function end_flush()
 {
-    //header('HTTP/1.1 200 OK');
     http_response_code (200);
-    flush();
     exit ; 
 }
 
@@ -43,7 +41,7 @@ function end_flush()
 /*******************************************************************************************************************************/
 /*******************************************************************************************************************************/
 
-	
+	/**
     // Create connection
     $db = new mysqli($servername, $username, $password, $database, $dbport);
 
@@ -52,6 +50,9 @@ function end_flush()
         die("Connection failed : " . $db->connect_error);
     } 
     //echo "Connected successfully (".$db->host_info.")";
+    */
+    
+    $db=null;
 //------------------------------------------------------------------------------------------------------------------------------    
 
 
@@ -79,9 +80,7 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
         foreach ($data['entry'][0]['messaging'] as $message) {
 
             // Skipping delivery messages
-            if (!empty($message['delivery'])) {
-                end_flush();
-            }
+            if(!empty($message['delivery'])) continue;
           
             $user = $bot->userProfile($message['sender']['id']);
 
@@ -101,6 +100,7 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
             
             $timePassed = getTimeDiff($db, $id);
         
+            $command='';
 
             // When bot receive message from user
             if (!empty($message['message']))
@@ -134,6 +134,8 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                 $command = $message['postback']['payload'];
             }
             
+            
+            
 // Handle command------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------------
@@ -146,7 +148,7 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                 case "start":
                     $initialized = getUserData($db, $id, 'Initializing');
                     if ($initialized == 0)
-                {
+                    {
                     updateUser($db, $id, 'Initializing', 1);
                     $bot->send(new Message($message['sender']['id'], "Congratulations ".$fname.", If you are currently a housemaid in an Arab country, you are automatically approved to work for Maids.at :)"));
                     sleep(6);
@@ -170,7 +172,10 @@ if (!empty($_REQUEST['hub_mode']) && $_REQUEST['hub_mode'] == 'subscribe' && $_R
                         sleep(3);
                         updateUser($db, $id, 'Initializing', 0);
                     }
-                    else end_flush();
+                    else
+                    {
+                        end_flush();
+                    }
                     break;
                   
                     
